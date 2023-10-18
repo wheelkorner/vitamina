@@ -14,17 +14,18 @@
 
 # Campos Necessários:
 	
-Parceiro:
-	id
-	cd_parceiro: Código do Parceiro.
-	Nome (Identidade)
-Loja:
-	id
-	parceiro_id (chave estrangeira para o Parceiro)
-	cd_loja (sequêncial de filiais)
-	cd_pro_negocio (concatenação de Parceiro/Loja)
-	razao_social (Identidade da Loja)
-	cnpj (chave única que ajuda a manter a consistência)
+    Parceiro:
+    	id
+    	cd_parceiro: Código do Parceiro.
+    	Nome (Identidade)
+     
+    Loja:
+    	id
+    	parceiro_id (chave estrangeira para o Parceiro)
+    	cd_loja (sequêncial de filiais)
+    	cd_pro_negocio (concatenação de Parceiro/Loja)
+    	razao_social (Identidade da Loja)
+    	cnpj (chave única que ajuda a manter a consistência)
 
 
 O diagrama sugere que cada Parceiro possui uma(matriz) e ou várias filiais e o código da filial é gerado com base na quantidade sequencial de filiais atribuidas ao parceiro.
