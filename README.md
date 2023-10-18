@@ -1,4 +1,247 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+
+## Requisitos do Projeto
+
+- Ubuntu 22.04 LTS
+- Laravel v8.83.27 
+- PHP v7.4.33
+- MYSQL v8.0.33
+- Composer version 2.5.7
+- Docker version 24.0.2
+
+## Ferramentas
+- Terminator
+- Workbench
+- Sublime Text
+
+## Etapas para instalar o PHP 7.4 no UBUNTU 22.04 LTS
+
+Atualize o sistema:
+```bash
+sudo apt update && sudo apt upgrade
+```
+Adicione o Repositório Ondrej PPA no Ubuntu 22.04:
+```bash
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+```
+Instalar:
+```bash
+sudo apt install php7.4
+```
+Extensões:
+```bash
+sudo apt install php7.4- extension_name
+
+sudo apt install php7.4-{cli,common,curl,zip,gd,mysql,xml,mbstring,json,intl}
+
+sudo apt install php7.4-common php7.4-mysql php7.4-xml php7.4-xmlrpc php7.4-curl php7.4-gd php7.4-imagick php7.4-cli php7.4-dev php7.4-imap php7.4-mbstring php7.4-opcache php7.4-soap php7.4-zip php7.4-intl -y
+
+```
+Definir como versão padrão:
+```bash
+sudo update-alternatives --config php
+```
+Digite um dos números de **“Seleção”** da versão PHP listada que você deseja tornar padrão do sistema.
+
+Desinstale o PHP e remova o Ondrej PPA:
+```bash
+sudo apt autoremove --purge php7.4
+sudo add-apt-repository --remove ppa:ondrej/php -y
+```
+Verifique e versão do PHP instalada:
+```bash
+php -v
+```
+
+## Instalando o Composer
+
+Instalação:
+```bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+Verificar link com comandos
+https://getcomposer.org/download/
+
+Verificando permissão:
+```bash
+sudo chmod +x composer.phar
+```
+Movimentando para a pasta padrão:
+```bash
+sudo mv composer.phar /usr/local/bin/composer
+```
+Update
+```bash
+sudo composer update
+```
+
+## Instalando o Laravel
+
+Instalando versão 8.0
+```bash
+composer create-project laravel/laravel:^8.0 vitamina
+```
+Entre na pasta da projeto e desde a pasta rode o comando.
+```bash
+php artisan serve
+```
+No navegador no endereço configurado por padrão **127.0.0.1:8000** será publicado.
+
+
+## Instalando Docker
+Instalação em UBUNTU
+
+Atualizando APT-GET
+```bash
+sudo apt-get update
+```
+Instalando a versão mais recente do Docker
+```bash
+sudo apt install docker-ce
+```
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+Testando instalação:
+```bash
+sudo systemctl status docker
+```
+
+Rodando
+```bash
+sudo docker run hello-world
+```
+Este comando baixa uma imagem de teste e a executa em um contêiner. Quando o contêiner é executado, ele imprime uma mensagem de confirmação e sai.
+
+Inicializando uma Instancia do MYSQL
+```bash
+sudo docker run --name mysql-vitamina -e MYSQL_ROOT_PASSWORD=root -d -p 3306:3306 mysql
+```
+Help:
+```bash
+docker docker-subcommand --help
+```
+comando: 
+- docker run  {comando docker}
+- --name mysql-prime  {nome do container}
+- -e MYSQL_ROOT_PASSWORD=root  {variavel global}
+- -p 3306:3306  {porta}
+- -d mysql  {imagem}
+
+## Criando a Base de dados
+
+Apôs instalação do MySQL rodar:
+```SQL
+CREATE DATABASE saga
+```
+
+## Entrando no mysql do container:
+```bash
+sudo docker exec -it hash_do_container /bin/bash
+```
+Acesando mysql com root:
+```bash
+mysql -proot
+```
+Visualizando BASES:
+```SQL
+SHOW databases;
+```
+Acessando a Base:
+```SQL
+USE <base>;
+```
+Visualizando Tabelas:
+```SQL
+SHOW tables;
+```
+
+## Configuração env LARAVEL
+
+- Configuração do arquivo “.env” com a base mysql
+- Abrir no SUBLIME ou VSCODE
+
+~~~php
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=vitamina
+DB_USERNAME=root
+DB_PASSWORD=***
+~~~
+
+Adicionando permissão de pasta:
+```bash
+sudo chmod 777 -R storage/
+```
+Testando o ARTISAN e aplicando migrates:
+
+```bash
+php artisan
+php artisan migrate:install
+php artisan migrate:status
+php artisan migrate
+php artisan migrate:status
+```
+
+## Instalando o **AdminLTE**
+
+Dentro da pasta do projeto LARAVEL rodar os comando a seguir:
+
+Baixar
+```bash
+composer require jeroennoten/laravel-adminlte
+```
+
+
+Instalar
+```bash
+php artisan adminlte:install
+```
+Complementos
+```bash
+composer require laravel/ui
+```
+Autenticação
+```bash
+php artisan ui bootstrap --auth
+```
+Ativando Recursos
+```bash
+php artisan adminlte:install --only=auth_views
+php artisan adminlte:install --only=basic_views
+php artisan adminlte:plugins install
+
+php artisan storage:link
+
+```
+### Outras configurações:
+https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Installation
+
+### Documentação Laravel:
+https://laravel.com/
+
+### Mais informações:
+Para mudar o idioma de inglês para português altera o arquivo /config→app.php
+~~~php
+'locale' => 'pt-br',
+
+'timezone' => 'America/Sao_Paulo',
+~~~
+
+### Adicionando o Guzzle caso for consumir API
+
+```bash
+composer require guzzlehttp/guzzle:~7.0
+```
+ 
+
+
+## Sobre o Laravel
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -7,9 +250,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel é um framework de aplicações web com sintaxe expressiva e elegante. Acreditamos que o desenvolvimento deve ser uma experiência agradável e criativa para ser verdadeiramente gratificante. O Laravel simplifica o desenvolvimento facilitando tarefas comuns usadas em muitos projetos da web, como:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
@@ -19,46 +260,19 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Robust background job processing](https://laravel.com/docs/queues).
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O Laravel é acessível, poderoso e fornece as ferramentas necessárias para aplicativos grandes e robustos.
 
 ## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Laravel [documentation](https://laravel.com/docs)
+Laracasts [Laracasts](https://laracasts.com)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Vulnerabilidades de segurança
 
-## Laravel Sponsors
+Se você descobrir uma vulnerabilidade de segurança no Laravel, envie um e-mail para Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). Todas as vulnerabilidades de segurança serão prontamente abordadas.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Licença
 
-### Premium Partners
+A estrutura Laravel é um software de código aberto licenciado sob a [MIT license](https://opensource.org/licenses/MIT).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+http://displaysolutions.samsung.com/docs/display/MS1/Open+API#breadcrumbs
