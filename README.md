@@ -1,15 +1,18 @@
 
 ## Análise o modelo de banco de dados anexado e identifique as entidades, relacionamentos e campos necessários para implementar o sistema.
 
-Entidades:
+# Entidades:
+
 	Parceiro
 	Matriz / Filial - Loja
-Relacionamentos:
+
+# Relacionamentos:
+
 	Parceiro possui uma ou várias Filiais.
 	Filial pertence a um Parceiro.
 	Loja é uma Matriz ou Filial que está associada a um Parceiro
 
-Campos Necessários:
+# Campos Necessários:
 	
 Parceiro:
 	id
@@ -22,7 +25,8 @@ Loja:
 	cd_pro_negocio (concatenação de Parceiro/Loja)
 	razao_social (Identidade da Loja)
 	cnpj (chave única que ajuda a manter a consistência)
-	
+
+
 O diagrama sugere que cada Parceiro possui uma(matriz) e ou várias filiais e o código da filial é gerado com base na quantidade sequencial de filiais atribuidas ao parceiro.
 quando a sequencia ou quantidade excede 99 o campo CodProNegocio deve ser modificado.
 o Parceiro mantem a mesma regra porem para 999 Parceiros.
@@ -34,7 +38,9 @@ Dentro do diagrama somente retiraria um dos processos: ja que a sequência é de
 
 <img src="https://github.com/wheelkorner/vitamina/blob/main/public/vitamina.png">
 
+## Se possível, implemente as models no Laravel com base na modelagem fornecida. Certifique-se de seguir as melhores práticas e padrões de codificação do Laravel.
 
+Foram criadas as Models e Migrates das duas entidades: Parceiros e Lojas
 
 ## Requisitos do Projeto
 
