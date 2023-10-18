@@ -32,7 +32,7 @@ o Parceiro mantem a mesma regra porem para 999 Parceiros.
 
 Dentro do diagrama somente retiraria um dos processos: ja que a sequência é definida pela filial, e a matriz sempre será 1. 
 
-<img src="/public/storage/vitamina.png">
+<img src="https://github.com/wheelkorner/vitamina/blob/main/public/vitamina.png">
 
 
 
