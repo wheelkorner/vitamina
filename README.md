@@ -136,7 +136,7 @@ comando:
 
 Apôs instalação do MySQL rodar:
 ```SQL
-CREATE DATABASE saga
+CREATE DATABASE vitamina
 ```
 
 ## Entrando no mysql do container:
