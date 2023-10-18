@@ -1,4 +1,41 @@
 
+## Análise o modelo de banco de dados anexado e identifique as entidades, relacionamentos e campos necessários para implementar o sistema.
+
+Entidades:
+	Parceiro
+	Matriz / Filial - Loja
+Relacionamentos:
+	Parceiro possui uma ou várias Filiais.
+	Filial pertence a um Parceiro.
+	Loja é uma Matriz ou Filial que está associada a um Parceiro
+
+Campos Necessários:
+	
+Parceiro:
+	id
+	cd_parceiro: Código do Parceiro.
+	Nome (Identidade)
+Loja:
+	id
+	parceiro_id (chave estrangeira para o Parceiro)
+	cd_loja (sequêncial de filiais)
+	cd_pro_negocio (concatenação de Parceiro/Loja)
+	razao_social (Identidade da Loja)
+	cnpj (chave única que ajuda a manter a consistência)
+	
+O diagrama sugere que cada Parceiro possui uma(matriz) e ou várias filiais e o código da filial é gerado com base na quantidade sequencial de filiais atribuidas ao parceiro.
+quando a sequencia ou quantidade excede 99 o campo CodProNegocio deve ser modificado.
+o Parceiro mantem a mesma regra porem para 999 Parceiros.
+
+
+## Analise o diagrama fornecido e explique, em detalhes, o que precisa ser feito para integrar esse diagrama no nosso projeto atual. Descreva qualquer modificação ou adição que você considere necessária para implementar com sucesso as funcionalidades indicadas no diagrama.
+
+Dentro do diagrama somente retiraria um dos processos: ja que a sequência é definida pela filial, e a matriz sempre será 1. 
+
+<img src="/public/storage/vitamina.png">
+
+
+
 ## Requisitos do Projeto
 
 - Ubuntu 22.04 LTS
